@@ -1,0 +1,28 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    tr.table-row {
+        border-bottom: 1px solid lightgray;
+
+        td {
+            padding: 15px;
+            height: 100%;
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: lightgray;
+
+            td {
+
+                background-color: lightgray;
+            }
+        }
+    }
+}
