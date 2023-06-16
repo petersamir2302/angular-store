@@ -15,7 +15,15 @@ export class AuthService {
   private usernameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   public username$: Observable<string> = this.usernameSubject.asObservable();
 
-  constructor(private http: HttpClient, private store: Store, private router: Router) {}
+  constructor(private http: HttpClient, private store: Store, private router: Router) {
+    
+    const storedUserData = localStorage.getItem('authData');
+    if (storedUserData) {
+      const userData = JSON.parse(storedUserData);
+      this.usernameSubject.next(userData.username);
+    }
+
+  }
 
   login(username: string, password: string): Promise<any> {
     const token = this.generateToken();
