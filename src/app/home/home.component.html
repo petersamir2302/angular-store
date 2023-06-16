@@ -1,1 +1,39 @@
-<p>home works!</p>
+<div class="container">
+  <mat-card class="my-3">
+    <mat-card-header>
+      <mat-card-title>Product Categories</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip role="button" *ngFor="let category of categories" (click)="selectCategory(category)"
+          [ngClass]="{ 'selected-chip': categoryFilter.value?.includes(category) }">
+          {{ category }}
+        </mat-chip>
+      </mat-chip-listbox>
+    </mat-card-content>
+  </mat-card>
+
+
+  <div class="card">
+    <div class="card-body">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let product of filteredProducts" class="col">
+          <div *ngIf="loading; else productContent" class="skeleton-loader"></div>
+          <ng-template #productContent>
+            <div class="card product-card">
+              <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"
+                [title]="product.title">
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title product-title">{{ product.title }}</h5>
+                <p class="card-text product-description">{{ product.description | truncate: 100 }}</p>
+                <div class="product-price">{{ product.price | currency }}</div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

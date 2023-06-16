@@ -15,7 +15,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { authReducer } from './auth.reducer';
 import { AuthEffects } from './auth.effect';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from './auth.service';
@@ -23,11 +23,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
-
-
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import {MatChipsModule} from '@angular/material/chips';
+import { TruncatePipe } from './truncate.pipe';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -53,9 +55,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatCardModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatGridListModule,
+    MatChipsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
