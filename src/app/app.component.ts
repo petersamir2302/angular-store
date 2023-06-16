@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -7,13 +7,16 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.scss'],
   providers: [AuthService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'stc-peter';
-  username: string; // Define the username property
+  username: string = '';
 
-  constructor(private authService: AuthService) {
-    // Retrieve the username from the AuthService
-    this.username = this.authService.getUsername();
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.username$.subscribe((username: string) => {
+      this.username = username;
+    });
   }
 
   logout(): void {

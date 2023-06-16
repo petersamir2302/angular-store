@@ -14,26 +14,22 @@
   </mat-card>
 
 
-  <div class="card">
-    <div class="card-body">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div *ngFor="let product of filteredProducts" class="col">
-          <div *ngIf="loading; else productContent" class="skeleton-loader"></div>
-          <ng-template #productContent>
-            <div class="card product-card">
-              <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"
-                [title]="product.title">
-              </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let product of filteredProducts" class="col">
+      <div *ngIf="loading; else productContent" class="skeleton-loader"></div>
+      <ng-template #productContent>
+        <div class="card product-card">
+          <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"
+            [title]="product.title">
+          </div>
 
-              <div class="card-body">
-                <h5 class="card-title product-title">{{ product.title }}</h5>
-                <p class="card-text product-description">{{ product.description | truncate: 100 }}</p>
-                <div class="product-price">{{ product.price | currency }}</div>
-              </div>
-            </div>
-          </ng-template>
+          <div class="card-body">
+            <h5 class="card-title product-title">{{ product.title }}</h5>
+            <p class="card-text product-description">{{ product.description | truncate: 100 }}</p>
+            <div class="product-price">{{ product.price | currency }}</div>
+          </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </div>
 </div>

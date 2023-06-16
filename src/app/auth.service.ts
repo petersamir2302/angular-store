@@ -4,12 +4,16 @@ import { Store } from '@ngrx/store';
 import { login } from './auth.actions';
 import { logout } from './auth.actions';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   //   private apiUrl = 'http://your-api-url.com'; // Replace with your backend API URL
+
+  private usernameSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public username$: Observable<string> = this.usernameSubject.asObservable();
 
   constructor(private http: HttpClient, private store: Store, private router: Router) {}
 
@@ -18,6 +22,7 @@ export class AuthService {
     const userType = this.getUserType(username, password);
 
     this.store.dispatch(login({ token: token, username: username, userType: userType }));
+    this.usernameSubject.next(username);
     if (userType === 'user') {
       this.router.navigate(['/']); // Navigate to the root route
     } else if (userType === 'admin') {
@@ -75,6 +80,7 @@ export class AuthService {
 
     // Dispatch the logout action to update the authentication state
     this.store.dispatch(logout());
+    this.usernameSubject.next('');
     // Redirect to the login page
     this.router.navigate(['/login']);
   }

@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="container d-flex justify-content-between">
     <span>Company Store</span>
-    <div class="d-flex align-items-center"> <!-- Added align-items-center class -->
-      <span class="mr-2 greeting">Hi, {{ username }}</span> <!-- Added margin class -->
-      <button mat-icon-button [matMenuTriggerFor]="menu" class="p-0 example-icon favorite-icon">
+    <div class="d-flex align-items-center">
+      <span *ngIf="username !== ''" class="mr-2 greeting">Hi, {{ username }}</span>
+      <button *ngIf="username !== ''" mat-icon-button [matMenuTriggerFor]="menu" class="p-0 example-icon favorite-icon">
         <mat-icon>person</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
