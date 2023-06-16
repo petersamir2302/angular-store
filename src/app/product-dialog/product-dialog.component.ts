@@ -1,7 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from '../product.model';
-import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
 
 @Component({
@@ -12,6 +11,7 @@ import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 
 export class ProductDialogComponent {
   title: string;
   product: Product;
+  @ViewChild('imageInput', { static: true }) imageInput!: ElementRef;
 
   constructor(
     public dialogRef: MatDialogRef<ProductDialogComponent>,
@@ -43,64 +43,8 @@ export class ProductDialogComponent {
     );
   }
   
-
-  public files: NgxFileDropEntry[] = [];
-
-  public dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
-    for (const droppedFile of files) {
-
-      // Is it a file?
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-
-          // Here you can access the real file
-          console.log(droppedFile.relativePath, file);
-
-          /**
-          // You could upload it like this:
-          const formData = new FormData()
-          formData.append('logo', file, relativePath)
-
-          // Headers
-          const headers = new HttpHeaders({
-            'security-token': 'mytoken'
-          })
-
-          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
-          .subscribe(data => {
-            // Sanitized logo returned from backend
-          })
-          **/
-
-        });
-      } else {
-        // It was a directory (empty directories are added, otherwise only files)
-        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry);
-      }
-    }
-  }
-
-  public fileOver(event: Event){
-    console.log(event);
-  }
-
-  public fileLeave(event: Event){
-    console.log(event);
-  }
-  getFileUrl(file: NgxFileDropEntry): string {
-    if (file && file.fileEntry.isFile) {
-      const fileEntry = file.fileEntry as FileSystemFileEntry;
-      const blob = (<any>fileEntry.file) as Blob;
-      try {
-        return URL.createObjectURL(blob);
-      } catch (error) {
-        console.error('Error creating object URL:', error);
-        return '';
-      }
-    }
-    return '';
+  selectFile() : void {
+    const nativeElement = this.imageInput.nativeElement;
+    nativeElement.click();
   }
 }

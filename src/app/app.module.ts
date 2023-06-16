@@ -23,7 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { NgxFileDropModule } from 'ngx-file-drop';
+
 
 
 
@@ -53,8 +53,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     MatInputModule,
     MatCardModule,
     MatTableModule,
-    MatDialogModule,
-    NgxFileDropModule
+    MatDialogModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

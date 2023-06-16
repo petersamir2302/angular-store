@@ -1,26 +1,32 @@
 <h1 mat-dialog-title>{{ title }}</h1>
 <div mat-dialog-content>
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" [(ngModel)]="product.title" required>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Description</mat-label>
-        <input matInput placeholder="Description" [(ngModel)]="product.description" required>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Price</mat-label>
-        <input matInput placeholder="Price" type="number" [(ngModel)]="product.price" required>
-    </mat-form-field>
-    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
-        (onFileLeave)="fileLeave($event)" accept="image/*">
-        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-            <span (click)="openFileSelector()" role="button">Drop files here or click to browse.</span>
-        </ng-template>
-    </ngx-file-drop>
+    <div class="row">
+        <div class="col-md-6">
 
-    <div class="image-preview product-image" [style.background-image]="'url(' + product.image + ')'" *ngIf="product.image"></div>
-    <div class="image-preview chosen-image" [style.background-image]="'url(' + files[0]?.relativePath + ')'" *ngIf="files.length > 0"></div>
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" [(ngModel)]="product.title" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="Description" [(ngModel)]="product.description" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input matInput placeholder="Price" type="number" [(ngModel)]="product.price" required>
+            </mat-form-field>
+            <input #imageInput type="file" [(ngModel)]="product.image" required hidden accept="image/*"/>
+        </div>
+        <div class="col-md-6">
+            <div class="image-preview product-image" [style.background-image]="'url(' + product.image + ')'">
+                <div class="overlay" (click)="selectFile()">
+                    <button mat-icon-button color="white">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

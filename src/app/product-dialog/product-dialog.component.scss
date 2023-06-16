@@ -1,4 +1,32 @@
 .mat-mdc-form-field {
-      width: 100%;
+    width: 100%;
+}
+
+.image-preview {
+    margin: auto;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    position: relative;
+    .overlay {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: .5;
+        justify-content: center;
+        align-items: center;
+        button {
+            background-color: white;
+            opacity: 1;
+        }
     }
-  
+    &:hover {
+        .overlay {
+            display: flex;
+        }
+    }
+}
