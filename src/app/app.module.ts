@@ -37,9 +37,7 @@ import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe } from './translation.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -74,7 +72,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatGridListModule,
     MatChipsModule,
     MatProgressSpinnerModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatPaginatorModule
   ],
   providers: [
     AuthService,

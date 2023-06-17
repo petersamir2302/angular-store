@@ -40,9 +40,15 @@ export class HomeComponent implements OnInit {
   categories: string[] = [];
   filteredProducts: Product[] = [];
   categoryFilter = new FormControl<string[]>([]);
-
+  
   loading = true;
-
+  
+  // Pagination variables
+  paginatedProducts: Product[] = [];
+  pageSize = 6; // Number of items to display per page
+  currentPage = 0; // Current page index
+  pageSizeOptions = [6, 12, 18]; // Available page size options
+  
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
@@ -67,6 +73,8 @@ export class HomeComponent implements OnInit {
         return selectedCategories.includes(product.category);
       });
     }
+    
+    this.updatePagination();
   }
 
   selectCategory(category: string) {
@@ -81,8 +89,20 @@ export class HomeComponent implements OnInit {
     }
     this.categoryFilter.setValue(selectedCategories);
   }
+  toggleView(view: 'card' | 'list') {
+    this.currentView = view;
+  }
   
-  toggleView() {
-    this.currentView = this.currentView === 'card' ? 'list' : 'card';
+  
+  onPageChange(event: any) {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updatePagination();
+  }
+  
+  updatePagination() {
+    const startIndex = this.currentPage * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedProducts = this.filteredProducts.slice(startIndex, endIndex);
   }
 }
