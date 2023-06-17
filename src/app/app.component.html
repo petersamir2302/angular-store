@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row class="container d-flex justify-content-between">
-    <span>Company Store</span>
+    <span>{{ 'companyStore' | translate}}</span>
     <div class="d-flex align-items-center">
-      <span *ngIf="username !== ''" class="mr-2 greeting">Hi, {{ username }}</span>
+      <span *ngIf="username !== ''" class="mr-2 greeting">{{ 'greeting' | translate}}{{ username }}</span>
       <button *ngIf="username !== ''" mat-icon-button [matMenuTriggerFor]="menu" class="p-0 example-icon favorite-icon">
         <mat-icon>person</mat-icon>
       </button>
@@ -12,7 +12,11 @@
           <span>Logout</span>
         </button>
       </mat-menu>
+      <button mat-icon-button (click)="changeLanguage()">
+        <mat-icon>translate</mat-icon>
+      </button>
     </div>
+    
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

@@ -1,36 +1,33 @@
-<h1 mat-dialog-title>{{ title }}</h1>
+<h1 mat-dialog-title>{{ 'title' | translate }}</h1>
 <div mat-dialog-content>
-    <div class="row">
-        <div class="col-md-6">
-
-            <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" [(ngModel)]="product.title" required>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <input matInput placeholder="Description" [(ngModel)]="product.description" required>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Price</mat-label>
-                <input matInput placeholder="Price" type="number" [(ngModel)]="product.price" required>
-            </mat-form-field>
-            <input #imageInput type="file" [(ngModel)]="product.image" required hidden accept="image/*"/>
-        </div>
-        <div class="col-md-6">
-            <div class="image-preview product-image" [style.background-image]="'url(' + product.image + ')'">
-                <div class="overlay" (click)="selectFile()">
-                    <button mat-icon-button color="white">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field>
+        <mat-label>{{ 'title' | translate }}</mat-label>
+        <input matInput [(ngModel)]="product.title" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ 'description' | translate }}</mat-label>
+        <input matInput [(ngModel)]="product.description" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ 'price' | translate }}</mat-label>
+        <input matInput type="number" [(ngModel)]="product.price" required>
+      </mat-form-field>
+      <input #imageInput type="file" [(ngModel)]="product.image" required hidden accept="image/*" />
     </div>
-
-
+    <div class="col-md-6">
+      <div class="image-preview product-image" [style.background-image]="'url(' + product.image + ')'">
+        <div class="overlay" (click)="selectFile()">
+          <button mat-icon-button color="white">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-button color="primary" (click)="save()" [disabled]="!isValid()">Save</button>
+  <button mat-button (click)="cancel()">{{ 'cancel' | translate }}</button>
+  <button mat-button color="primary" (click)="save()" [disabled]="!isValid()">{{ 'save' | translate }}</button>
 </div>

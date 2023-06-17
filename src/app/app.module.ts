@@ -1,4 +1,9 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEn from '@angular/common/locales/en';
+import localeAr from '@angular/common/locales/ar';
+registerLocaleData(localeEn);
+registerLocaleData(localeAr);
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +34,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
 import { TruncatePipe } from './truncate.pipe';
 import { CurrencyPipe } from '@angular/common';
+import { TranslatePipe } from './translation.pipe';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +44,8 @@ import { CurrencyPipe } from '@angular/common';
     HomeComponent,
     DashboardComponent,
     ProductDialogComponent,
-    TruncatePipe
+    TruncatePipe,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +70,11 @@ import { CurrencyPipe } from '@angular/common';
     MatGridListModule,
     MatChipsModule
   ],
-  providers: [AuthService,CurrencyPipe],
+  providers: [
+    AuthService,
+    CurrencyPipe,
+    { provide: LOCALE_ID, useValue: 'en' } // Set the default language
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
