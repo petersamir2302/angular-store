@@ -36,6 +36,8 @@ import { TruncatePipe } from './truncate.pipe';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe } from './translation.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 
 
 
@@ -71,7 +73,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatGridListModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonToggleModule
   ],
   providers: [
     AuthService,

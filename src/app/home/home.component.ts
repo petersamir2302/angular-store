@@ -2,13 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ProductService } from '../products.service';
 import { Product } from '../product.model';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('cardView', [
+      state('list', style({
+        transform: 'translateY(20px)',
+        overflow: 'hidden'
+      })),
+      state('card', style({
+        opacity: 1,
+        transform: 'none',
+        height: '*'
+      })),
+      transition('list => card', [
+        animate('300ms ease-out')
+      ]),
+      transition('card => list', [
+        animate('300ms ease-out')
+      ])
+    ]),
+    trigger('productAnimation', [
+      transition('* => *', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
+  currentView = 'card'; // Initial view state is 'card'
   products: Product[] = [];
   categories: string[] = [];
   filteredProducts: Product[] = [];
@@ -53,5 +80,9 @@ export class HomeComponent implements OnInit {
       selectedCategories.push(category);
     }
     this.categoryFilter.setValue(selectedCategories);
+  }
+  
+  toggleView() {
+    this.currentView = this.currentView === 'card' ? 'list' : 'card';
   }
 }

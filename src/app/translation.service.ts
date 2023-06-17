@@ -21,7 +21,8 @@ export class TranslationService {
         'price': 'Price',
         'actions': 'Actions',
         'cancel': 'Cancel',
-        'save': 'Save'
+        'save': 'Save',
+        'logout': 'Logout'
       },
       ar: {
         'productCategories': 'فئات المنتجات',
@@ -37,7 +38,8 @@ export class TranslationService {
         'price': 'السعر',
         'actions': 'الإجراءات',
         'cancel': 'إلغاء',
-        'save': 'حفظ'
+        'save': 'حفظ',
+        'logout': 'تسجيل الخروج'
       }
     };
     

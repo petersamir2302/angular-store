@@ -12,10 +12,21 @@
       </mat-chip-listbox>
     </mat-card-content>
   </mat-card>
+  <div class="d-flex justify-content-end mb-5">
+    <mat-button-toggle-group [(ngModel)]="currentView" (change)="currentView = $event.value">
+      <mat-button-toggle value="card">
+        <mat-icon>view_module</mat-icon> <!-- Replace 'Card View' text with the 'view_module' icon -->
+      </mat-button-toggle>
+      <mat-button-toggle value="list">
+        <mat-icon>view_list</mat-icon> <!-- Replace 'List View' text with the 'view_list' icon -->
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  
 
   <div class="product-grid">
     <ng-container *ngIf="loading; else productContent">
-      <div *ngFor="let _ of [1, 2, 3, 4, 5, 6]" class="col">
+      <div *ngFor="let _ of [1, 2, 3, 4, 5, 6]" class="col-md-4 d-inline-block mb-3">
         <div class="product-card skeleton-loader">
           <div class="skeleton-image"></div>
           <div class="skeleton-details">
@@ -26,11 +37,17 @@
         </div>
       </div>
     </ng-container>
+
     <ng-template #productContent>
-      <div *ngFor="let product of filteredProducts" class="col">
-        <div class="product-card">
-          <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}">
-          </div>
+      <ng-container [ngTemplateOutlet]="currentView === 'card' ? card : list"></ng-container>
+    </ng-template>
+  </div>
+
+  <ng-template #card>
+    <div [@cardView]="currentView" class="row">
+      <div *ngFor="let product of filteredProducts" class="col-md-4 mb-3" [@productAnimation]>
+        <div class="product-card px-3">
+          <div class="product-image mb-2" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"></div>
           <div class="card-body">
             <h5 class="card-title product-title">{{ product.title }}</h5>
             <p class="card-text product-description">{{ product.description | truncate: 100 }}</p>
@@ -40,6 +57,21 @@
           </div>
         </div>
       </div>
-    </ng-template>
-  </div>
+    </div>
+  </ng-template>
+
+  <ng-template #list>
+    <div [@cardView]="currentView">
+      <div *ngFor="let product of filteredProducts" class="col-md-6 d-inline-block" [@productAnimation]>
+        <div class="product-list-item px-3">
+          <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}"></div>
+          <div class="product-details">
+            <h5 class="product-title">{{ product.title }}</h5>
+            <p class="product-description">{{ product.description | truncate: 100 }}</p>
+            <div class="product-price">{{ product.price | currency }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
 </div>
