@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
       this.applyCategoryFilter();
       this.loading = false;
     });
+
     this.categoryFilter.valueChanges.subscribe(() => {
       this.applyCategoryFilter();
     });

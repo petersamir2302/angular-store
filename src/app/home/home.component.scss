@@ -1,6 +1,6 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
 }
 
@@ -28,7 +28,7 @@
   background-position: center;
   background-repeat: no-repeat;
   transition: transform 0.3s ease;
-  position: relative; /* Add this line */
+  position: relative;
 }
 
 .product-image:hover {
@@ -67,9 +67,42 @@
 
 .skeleton-loader {
   width: 100%;
-  height: 200px;
+  height: 100%;
   background-color: #e0e0e0;
   animation: skeleton-loading 1s infinite alternate;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.skeleton-image {
+  width: 100%;
+  height: 170px;
+  background-color: #f0f0f0;
+}
+
+
+.skeleton-details {
+  padding: 10px;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 16px;
+  background-color: #f0f0f0;
+  margin-bottom: 8px;
+}
+
+.skeleton-description {
+  width: 90%;
+  height: 12px;
+  background-color: #f0f0f0;
+  margin-bottom: 8px;
+}
+
+.skeleton-price {
+  width: 40%;
+  height: 14px;
+  background-color: #f0f0f0;
 }
 
 @keyframes skeleton-loading {
@@ -80,22 +113,4 @@
   100% {
     background-color: #f0f0f0;
   }
-}
-
-.mat-mdc-chip {
-  * {
-    cursor: pointer;
-  }
-  
-  &:not(.mdc-evolution-chip--disabled).selected-chip {
-    background-color: blue;
-    ::ng-deep span.mdc-evolution-chip__text-label.mat-mdc-chip-action-label {
-      color: white !important;
-    }
-  }
-}
-.product-price {
-  color: #3f51b5;
-  font-size: large;
-  font-weight: bold;
 }

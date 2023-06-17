@@ -35,6 +35,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import { TruncatePipe } from './truncate.pipe';
 import { CurrencyPipe } from '@angular/common';
 import { TranslatePipe } from './translation.pipe';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -68,7 +70,8 @@ import { TranslatePipe } from './translation.pipe';
     MatFormFieldModule,
     MatSelectModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     AuthService,
